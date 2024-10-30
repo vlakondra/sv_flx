@@ -1,33 +1,22 @@
 <script>
-  let display = $state([
-    "block",
-    "grid",
-    "inline-block",
-    "flex",
-    "inline-flex",
-    "none",
-  ]);
+   import FlexShow from "./lib/FlexShow.svelte";
 
-  let flex_direction = $state([
-    "row",
-    "row-reverse",
-    "column",
-    "column-reverse",
-  ]);
+  //массивы для select'ов убрать в модуль и импортировать
+  import { display  } from "./lib/select_values";
+  import  {flex_direction} from "./lib/select_values";
+  import {just_content} from "./lib/select_values"
 
-  let just_content = $state([
-    "flex-start",
-    "flex-end",
-    "center",
-    "space-between",
-    "space-around",
-  ]);
+  // let disp_selected = $state("block");
+  // let direct_selected = $state("row");
+  // let just_content_selected = $state("flex-start");
 
-  let disp_selected = $state("block");
-  let direct_selected = $state("row");
-  let just_content_selected = $state("flex-start");
+  // Объект для биндинга выбранных в select'ах значений
+  let flexvals = $state({
+    disp: "block",
+    direct: "row",
+    just_content: "flex-start",
+  });
 
-  import FlexShow from "./lib/FlexShow.svelte";
 </script>
 
 <main>
@@ -36,7 +25,7 @@
 
     <div class="combos">
       <div>
-        <select bind:value={disp_selected}>
+        <select bind:value={flexvals.disp}>
           {#each display as item}
             <option>
               {item}
@@ -46,7 +35,7 @@
       </div>
 
       <div>
-        <select bind:value={direct_selected}>
+        <select bind:value={flexvals.direct}>
           {#each flex_direction as item}
             <option>
               {item}
@@ -56,7 +45,7 @@
       </div>
 
       <div>
-        <select bind:value={just_content_selected}>
+        <select bind:value={flexvals.just_content}>
           {#each just_content as item}
             <option>
               {item}
@@ -65,16 +54,25 @@
         </select>
       </div>
     </div>
-    <!-- Дочернему компоненту передаются значения props'ов и переменных стиля -->
+
     <div>
-      <FlexShow
+      <!-- Оптимизация кода 1 -->
+      <!-- <FlexShow
         --disp={disp_selected}
         --direct={direct_selected}
         --justcont={just_content_selected}
         display={disp_selected}
         flex_dir={direct_selected}
         just_cont={just_content_selected}
-      />
+      
+      <!-- Оптимизация кода 2 -->
+      <!-- <FlexShow
+      display={disp_selected}
+      flex_dir={direct_selected}
+      just_cont={just_content_selected}
+    /> -->
+      <!-- Оптимизация кода 3 -->
+      <FlexShow selected={flexvals} />
     </div>
   </div>
 </main>
@@ -84,7 +82,7 @@
     display: flex;
   }
   main {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
   }
 </style>
