@@ -2,9 +2,9 @@
    import FlexShow from "./lib/FlexShow.svelte";
 
   //массивы для select'ов убрать в модуль и импортировать
-  import { display  } from "./lib/select_values";
-  import  {flex_direction} from "./lib/select_values";
-  import {just_content} from "./lib/select_values"
+  import { display  } from "./lib/select_values.svelte";
+  import  {flex_direction} from "./lib/select_values.svelte";
+  import {just_content} from "./lib/select_values.svelte"
 
   // let disp_selected = $state("block");
   // let direct_selected = $state("row");
