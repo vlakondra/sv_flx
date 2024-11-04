@@ -1,5 +1,8 @@
 # Svelte + Vite
 Starting FlexGenerator
+!!vars
+https://dev.to/wraith/css-scoping-in-svelte-and-how-to-work-around-it-37po
+
 
 Dynamic CSS Variables
 
