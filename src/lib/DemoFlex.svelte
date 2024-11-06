@@ -1,8 +1,11 @@
 <script>
+//Формирует ссылку на родит-й контейнер, изменяет кол-во дочерних эл-в и
+//устанавливает активный
+
     import { onMount } from "svelte";
     let { demoflexel = $bindable(), ...props } = $props();
 
-    let numDivs = $state(10)
+    let numDivs = $state(3);
 
     let flex_container = $state();
 
@@ -20,6 +23,7 @@
         }
         ev.target.style.background = "yellow";
         //установка активного Div'a
+        //?? props.activeDiv = null
         props.activate(ev.target);
     }
 </script>
@@ -27,16 +31,16 @@
 <!-- svelte-ignore a11y_interactive_supports_focus -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div bind:this={flex_container}>
-    <div role="button" onclick={setActive}>10</div>
-    <div role="button" onclick={setActive}>11</div>
-    <div role="button" onclick={setActive}>12</div>
-
     {#each [...Array(numDivs).keys()] as item}
-     <div role="button" onclick={setActive}>{item}</div>
+        <div role="button" onclick={setActive}>{item}</div>
     {/each}
-
 </div>
-<div><button onclick={()=>numDivs++}>+</button><button onclick={()=>numDivs--}>-</button></div>
+<div>
+    <!-- При удалении активного div'а activeDiv не обнуляется!!! -->
+    <button onclick={() => numDivs++}>+</button>
+    <button onclick={() => numDivs--}>-</button>
+</div>
+
 <style>
     div div {
         cursor: pointer;
