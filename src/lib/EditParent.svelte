@@ -15,6 +15,11 @@
 
 const onChangeDisplay=(ev)=>{
     props.container.style.display=flexvals.disp
+    console.log(props.container.style.display)
+    console.log(props.container.style.color)
+    console.log(props.container.style.margin)
+    props.container.children[1].style.background='blue'
+    console.log(props.container.children)
 }
 const onChangeDirect=(ev)=>{
     props.container.style.flexDirection=flexvals.direct

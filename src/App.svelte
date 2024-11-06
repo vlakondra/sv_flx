@@ -1,18 +1,25 @@
 <script>
-  	import { onMount } from 'svelte';
-   import FlexShow from "./lib/FlexShow.svelte";
-   import EditChilds from "./lib/EditChilds.svelte"
-   import EditParent from "./lib/EditParent.svelte"
+  import { onMount } from "svelte";
+  import FlexShow from "./lib/FlexShow.svelte";
+  import EditChilds from "./lib/EditChilds.svelte";
+  import EditParent from "./lib/EditParent.svelte";
+
+  import DemoFlex from "./lib/DemoFlex.svelte";
+  import FlexChildStyling from "./lib/FlexChildStyle.svelte";
 
   //массивы для select'ов убрать в модуль и импортировать
-  import { display  } from "./lib/select_values.svelte";
-  import  {flex_direction} from "./lib/select_values.svelte";
-  import {just_content} from "./lib/select_values.svelte"
+  import { display } from "./lib/select_values.svelte";
+  import { flex_direction } from "./lib/select_values.svelte";
+  import { just_content } from "./lib/select_values.svelte";
 
-  let flex_container =$state();
+  let flex_container = $state();
+
+  //Ссылка на DOM element с Flex-контейнером
+  //будет получена из компонента DemoFlex и передана другим компонентам
+  let demoflex_El = $state({});
 
 
-
+  let activeChild =$state()
   // let disp_selected = $state("block");
   // let direct_selected = $state("row");
   // let just_content_selected = $state("flex-start");
@@ -23,20 +30,29 @@
     direct: "row",
     just_content: "flex-start",
   });
+
+  const actvateChild = (sel_child)=>{
+    activeChild = sel_child
+    console.log(activeChild)
+  }
 </script>
 
 <main>
   <div>
     <h1>START</h1>
 
-    <div bind:this={flex_container} >
+    <DemoFlex bind:demoflexel={demoflex_El} activate={actvateChild} />
+    <EditChilds container={demoflex_El} />
+    <EditParent container={demoflex_El} />
+    <FlexChildStyling activediv = {activeChild}/>
+
+
+
+    <div bind:this={flex_container}>
       <div>7</div>
       <div>8</div>
       <div>9</div>
     </div>
-
-    <EditChilds   container = {flex_container} />
-    <EditParent   container = {flex_container} />
 
     <!-- перенести это в компонент -->
     <div class="combos">
@@ -71,15 +87,12 @@
       </div>
     </div>
 
- 
-      <FlexShow selected={flexvals}  />
-    </div>
-
+    <FlexShow selected={flexvals} />
+  </div>
 </main>
 
 <style>
-
-.flexshow {
+  .flexshow {
     display: var(--disp);
     flex-direction: var(--direct);
     justify-content: var(--justcont);
