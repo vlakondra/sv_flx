@@ -19,6 +19,11 @@
   let demoflex_El = $state({});
 
 
+  //обнулять активный child нужно д в случае удаления (изменения кол-ва потомков)
+  const deActive = ()=>{
+    activeChild = null 
+}
+
   let activeChild =$state()
   // let disp_selected = $state("block");
   // let direct_selected = $state("row");
@@ -34,6 +39,8 @@
   const actvateChild = (sel_child)=>{
     activeChild = sel_child
     console.log(activeChild)
+    //activeChild = null //??
+    console.log(activeChild)
   }
 </script>
 
@@ -41,7 +48,7 @@
   <div>
     <h1>START</h1>
 
-    <DemoFlex bind:demoflexel={demoflex_El} activate={actvateChild} />
+    <DemoFlex bind:demoflexel={demoflex_El} activate={actvateChild} activediv = {activeChild} deact={deActive} />
     <EditChilds container={demoflex_El} />
     <EditParent container={demoflex_El} />
     <FlexChildStyling activediv = {activeChild}/>

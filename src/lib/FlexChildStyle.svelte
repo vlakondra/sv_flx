@@ -6,9 +6,11 @@
    }
 </script>
 <div>
-    { props.activediv.style.background}
+    {#if props.activediv}
+         { props.activediv.style.background}
+    {/if}
 </div>
 <div>
     <!-- При открытии активного div'a нет!!! -->
-    <input value={props.activediv?   props.activediv.style.background:null} onblur={setColor} placeholder="background"/>
+    <input value={props.activediv?   props.activediv.style.background : null} onblur={setColor} placeholder="background"/>
 </div>

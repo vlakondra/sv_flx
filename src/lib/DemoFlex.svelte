@@ -21,11 +21,13 @@
         for (let el of flex_container.children) {
             el.style.background = null;
         }
-        ev.target.style.background = "yellow";
+       // ev.target.style.background = "yellow";
         //установка активного Div'a
         //?? props.activeDiv = null
         props.activate(ev.target);
     }
+
+
 </script>
 
 <!-- svelte-ignore a11y_interactive_supports_focus -->
@@ -38,7 +40,7 @@
 <div>
     <!-- При удалении активного div'а activeDiv не обнуляется!!! -->
     <button onclick={() => numDivs++}>+</button>
-    <button onclick={() => numDivs--}>-</button>
+    <button onclick={() =>  {props.deact(); numDivs--}}>-</button>
 </div>
 
 <style>
