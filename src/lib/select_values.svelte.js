@@ -1,23 +1,13 @@
-export let display = $state([
-    "block",
-    "grid",
-    "inline-block",
-    "flex",
-    "inline-flex",
-    "none",
-  ]);
+export let flexOptions = {
+  display: ["flex", "inline-flex", "none"],
+  flexDirection: ["row", "row-reverse", "column", "column-reverse"],
+  justifyContent: ["flex-start", "flex-end", "center", "space-between", "space-around"],
+  alignItems: ["normal", "flex-start", "flex-end", "center", "baseline", "stretch"],
+  flexWrap: ["nowrap", "wrap", "wrap-reverse"],
+  alignContent: ["normal", "flex-start", "flex-end", "center", "space-between", "space-around", "space-evenly", "stretch"]
+}
 
-  export let flex_direction = $state([
-    "row",
-    "row-reverse",
-    "column",
-    "column-reverse",
-  ]);
+export let alignSelfOptions={
+  alignSelf:['auto','normal','center','start','end','self-start','self-end','flex-start','flex-end']
+}
 
-  export let just_content = $state([
-    "flex-start",
-    "flex-end",
-    "center",
-    "space-between",
-    "space-around",
-  ]);
