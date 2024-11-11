@@ -37,5 +37,6 @@
   main {
     display: flex;
     justify-content: center;
+    max-height: 400px;
   }
 </style>
