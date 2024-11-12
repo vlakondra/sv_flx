@@ -74,6 +74,7 @@
     .flex-container {
         gap: 3px;
         min-width: 300px;
+        max-width:400px;
         min-height: 200px;
         padding: 5px;
         border: 1px solid silver;
