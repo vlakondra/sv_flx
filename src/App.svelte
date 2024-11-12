@@ -2,6 +2,7 @@
   import FlexContainer from "./lib/FlexContainer.svelte";
   import StylingParent from "./lib/StylingParent.svelte";
   import StylingChild from "./lib/StylingChild.svelte";
+  import PrintStyles from "./lib/PrintStyles.svelte";
 
   let isActive = $state(false);
 
@@ -21,15 +22,40 @@
     actid = child_idx;
     activeChildEl = sel_child;
   };
+
+  let parentstyle = $state();
+  let childstyle = $state();
+  function onStyleChange() {
+    parentstyle = {
+      display: flexContainerEl.style.display,
+      "flex-direction": flexContainerEl.style.flexDirection,
+      "justify-content": flexContainerEl.style.justifyContent,
+    };
+    childstyle = {
+      test:123
+    }
+  }
 </script>
 
 <main>
   <div>
     <h1>START</h1>
+    <div style="display: flex; flex-direction: row;">
+      <div>
+        <FlexContainer
+          bind:flexContEl={flexContainerEl}
+          activate={actvateChild}
+        />
+        <!-- <StylingParent container={flexContainerEl} /> -->
 
-    <FlexContainer bind:flexContEl={flexContainerEl} activate={actvateChild} />
-    <StylingParent container={flexContainerEl} />
-    <StylingChild activechild={activeChildEl} isactive={isActive} />
+        <StylingParent event={onStyleChange} container={flexContainerEl} />
+
+        <StylingChild event={onStyleChange} activechild={activeChildEl} isactive={isActive} />
+      </div>
+      <div>
+        <PrintStyles {parentstyle} childstyle={childstyle} />
+      </div>
+    </div>
   </div>
 </main>
 

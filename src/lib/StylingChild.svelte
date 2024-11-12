@@ -1,14 +1,15 @@
 <script>
     //Данные с определениями alignSelf-стиля
     import { alignSelfOptions } from "./select_values.svelte";
-    let props = $props();
+    let {activechild,event} = $props();
 </script>
 
 <div>
-    {#if props.activechild.style}
-        {props.activechild.id}
+    {#if activechild.style}
+        {activechild.id}
         <div class='select'>
-            <select bind:value={props.activechild.style.alignSelf}>
+            <select bind:value={activechild.style.alignSelf}
+            onchange={()=>event()}>
                 <option value="" selected disabled
                     >Индивидуальное выравнивание</option
                 >
@@ -23,7 +24,8 @@
             <label>
                 flex-grow
                 <input
-                    bind:value={props.activechild.style.flexGrow}
+                    bind:value={activechild.style.flexGrow}
+                    onblur={()=>event()}
                     type="number"
                 />
             </label>
@@ -32,7 +34,8 @@
             <label>
                 order
                 <input
-                    bind:value={props.activechild.style.order}
+                    bind:value={activechild.style.order}
+                    onblur={()=>event()}
                     type="number"
                 />
             </label>
@@ -41,7 +44,8 @@
             <label>
                 flex-basic
                 <input
-                    bind:value={props.activechild.style.flexBasic}
+                    bind:value={activechild.style.flexBasic}
+                    onblur={()=>event()}
                     type="text"
                 />
             </label>
