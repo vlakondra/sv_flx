@@ -41,13 +41,12 @@
         let l = flex_container.children.length;
         if (l == 1) return;
 
-        let lastchild = flex_container.children[l - 1];
-
-        // if (lastchild.id != "") {
-        //    // props.deactivate();
-        // }
-
-        flex_container.removeChild(lastchild);
+        // let lastchild = flex_container.children[l - 1];
+        // flex_container.removeChild(lastchild);
+        //если  последняя была стилизована, то снять стили 
+        numDivs--
+        //вызываем событие обновления структуры и стилей
+        props.event()
     };
 </script>
 

@@ -25,6 +25,7 @@
 
   let parentstyle = $state();
   let childstyle = $state();
+  
   function onStyleChange() {
     parentstyle = {
       display: flexContainerEl.style.display,
@@ -45,6 +46,7 @@
         <FlexContainer
           bind:flexContEl={flexContainerEl}
           activate={actvateChild}
+          event={onStyleChange}
         />
         <!-- <StylingParent container={flexContainerEl} /> -->
 
