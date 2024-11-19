@@ -26,29 +26,52 @@
   let parentstyle = $state();
   let childstyle = $state();
   
+
+  //при любом изменении стилей
   function onStyleChange() {
     parentstyle = {
       display: flexContainerEl.style.display,
       "flex-direction": flexContainerEl.style.flexDirection,
       "justify-content": flexContainerEl.style.justifyContent,
     };
+    
+    // for (let x in flexContainerEl.children){
+    //       console.log(flexContainerEl.children[x])
+    // }
+   console.log('E',)
+ 
+  console.log(//OK
+    Object.entries(flexContainerEl.children[0].style).filter(([k,v])=>['flexBasis','alignSelf','alignItems','flexGrow'].includes(k))
+  )
+
     childstyle = {
       test:123
     }
+  
   }
+
+ 
+ function onLastRemove(){
+//После удаления последнего дочернего div'a обнуляем select  и остальные input'ы 
+//в компоненте StylingChild
+   
+  
+  activeChildEl = { fake: 1, style:{'alignSelf':'','flexGrow':'' }}
+  //доделать обнуление input'ов
+ }
 </script>
 
 <main>
   <div>
-    <h1>START</h1>
+    <h1>START {actid}-{isActive} </h1>
     <div style="display: flex; flex-direction: row;">
       <div>
         <FlexContainer
           bind:flexContEl={flexContainerEl}
           activate={actvateChild}
           event={onStyleChange}
+          on_removelast={onLastRemove}
         />
-        <!-- <StylingParent container={flexContainerEl} /> -->
 
         <StylingParent event={onStyleChange} container={flexContainerEl} />
 

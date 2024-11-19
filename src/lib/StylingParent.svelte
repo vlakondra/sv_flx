@@ -10,15 +10,6 @@
   import { flexOptions } from "./select_values.svelte";
 
   onMount(() => {
-    //берем 1-е элементы из массивов объекта flexOptions и определяем стили контейнера.
-    //Нужно проверить, чтобы они соответствовали значениям по умолчанию.
-    // props.container.style.display = flexOptions.display[0];
-    // props.container.style.flexDirection = flexOptions.flexDirection[0];
-    // props.container.style.justifyContent = flexOptions.justifyContent[0];
-    // props.container.style.alignItems = flexOptions.alignItems[0];
-    // props.container.style.flexWrap = flexOptions.flexWrap[0];
-    // props.container.style.alignContent = flexOptions.alignContent[0];
-
     container.style.display = flexOptions.display[0];
     container.style.flexDirection = flexOptions.flexDirection[0];
     container.style.justifyContent = flexOptions.justifyContent[0];
@@ -69,37 +60,6 @@
   {/each}
 </div>
 
-<!--ЛИКВИДАЦИЯ 6 select'ов <div class="combos">
-  <div>
-    <select bind:value={flexvals.display} onchange={onChangeDisplay}>
-      {#each flexOptions.display as item}
-        <option value={item}>
-          {item}
-        </option>
-      {/each}
-    </select>
-  </div>
-
-  <div>
-    <select bind:value={flexvals.direct} onchange={onChangeDirect}>
-      {#each flexOptions.flexDirection as item}
-        <option value={item}>
-          {item}
-        </option>
-      {/each}
-    </select>
-  </div>
-
-  <div>
-    <select bind:value={flexvals.just_content} onchange={onChangeJustContent}>
-      {#each flexOptions.justifyContent as item}
-        <option value={item}>
-          {item}
-        </option>
-      {/each}
-    </select>
-  </div>
-</div> -->
 
 <style>
   .style-controls {

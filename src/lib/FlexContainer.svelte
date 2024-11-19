@@ -25,11 +25,13 @@
         //снимаем признак активности у всех других дочерних элементов
         for (let el of flex_container.children) {
             el.style.background = null;
-            el.id = "";
+            el.dataset.active = false
+            //el.id = "";
         }
         //устанавливаем активность у выбранного (по click) дочернего элемента
         ev.target.id = idx;
         ev.target.style.background = "yellow";
+        ev.target.dataset.active = true //?? подумать
 
         //передаем активированный элемент родителю (т.е. в App)
         //через функцию activate (получена из App через props)
@@ -39,13 +41,14 @@
     const removeLastChild = () => {
         //удаляем последний дочерний элемент
         let l = flex_container.children.length;
-        if (l == 1) return;
+        if (l == 1) return; //если осталось только один, то не удаляем
 
-        // let lastchild = flex_container.children[l - 1];
-        // flex_container.removeChild(lastchild);
-        //если  последняя была стилизована, то снять стили 
+        //вызываем функцию в App, которая oбнулит выбранные значения input'ов в StylingChild
+        props.on_removelast()
+
         numDivs--
-        //вызываем событие обновления структуры и стилей
+     
+        //вызываем событие обновления структуры и стилей для формирования текста стилей
         props.event()
     };
 </script>
@@ -55,6 +58,7 @@
 <div bind:this={flex_container} class="flex-container">
     {#each [...Array(numDivs).keys()] as item, i}
         <div
+            data-active = false
             role="button"
             onclick={(event) => setActive(i, event)}
             class="flex-child"
