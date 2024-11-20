@@ -38,7 +38,6 @@
     // for (let x in flexContainerEl.children){
     //       console.log(flexContainerEl.children[x])
     // }
-   console.log('E',)
  
   console.log(//OK
     Object.entries(flexContainerEl.children[0].style).filter(([k,v])=>['flexBasis','alignSelf','alignItems','flexGrow'].includes(k))
