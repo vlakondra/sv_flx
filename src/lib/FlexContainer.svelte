@@ -53,6 +53,26 @@
     };
 </script>
 
+
+<!-- https://github.com/carbon-design-system/sveld
+https://stackoverflow.com/questions/62125395/is-there-a-standard-way-to-document-svelte-components 
+-->
+
+
+<!--
+@component
+Это документация компонента.
+It will show up on hover.
+
+- You can use markdown here.
+- You can also use code blocks here.
+- Usage:
+  ```tsx
+  <main name="Arethra">
+    ```
+  -->
+
+
 <!-- svelte-ignore a11y_interactive_supports_focus -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div bind:this={flex_container} class="flex-container">

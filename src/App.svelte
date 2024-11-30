@@ -4,6 +4,9 @@
   import StylingChild from "./lib/StylingChild.svelte";
   import PrintStyles from "./lib/PrintStyles.svelte";
 
+  import { setContext } from 'svelte';
+  import Child from './lib/child.svelte'
+
   let isActive = $state(false);
 
   //Ссылка на DOM element с Flex-контейнером
@@ -58,12 +61,29 @@
   activeChildEl = { fake: 1, style:{'alignSelf':'','flexGrow':'' }}
   //доделать обнуление input'ов
  }
+
+ const onclick=(n)=>active = n
+ let active = $state(0)
+ let mydiv =$state();
+ 
+ let obj ={act:()=>active, pdiv:()=>mydiv}
+ setContext('myKey',obj)   
 </script>
 
 <main>
-  <div>
+<div>
+  <div bind:this={mydiv}>
+    <div style='background:rgb(131, 127, 225)' onclick={()=>onclick(0)}>Child1</div>
+    <div onclick={()=>onclick(1)}>Child2</div>
+    <div onclick={()=>onclick(2)}>Child3</div>
+  </div>
+  
+  <div><Child/></div>
+
+
     <h1>START {actid}-{isActive} </h1>
     <div style="display: flex; flex-direction: row;">
+   
       <div>
         <FlexContainer
           bind:flexContEl={flexContainerEl}
