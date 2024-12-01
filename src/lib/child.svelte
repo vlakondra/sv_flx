@@ -1,35 +1,35 @@
 <script>
- import { getContext } from 'svelte';
+    //https://fubits.dev/notes/svelte-5-patterns-simple-shared-state-getcontext-tweened-stores-with-runes/#shared-runed-state-via-getcontext--setcontext-and-closures
 
- function rgbToHex(rgb) {
-  // Extract red, green, and blue values from the RGB string
-		if(!rgb)return
-  const [r, g, b] = rgb.match(/\d+/g).map(Number);
+    import { getContext } from "svelte";
 
-  // Convert each red, green, and blue value to a hexadecimal string
-  const hexR = r.toString(16).padStart(2, "0");
-  const hexG = g.toString(16).padStart(2, "0");
-  const hexB = b.toString(16).padStart(2, "0");
+    function rgbToHex(rgb) {
+        // Extract red, green, and blue values from the RGB string
+        if (!rgb) return;
+        const [r, g, b] = rgb.match(/\d+/g).map(Number);
 
-  // Combine the hexadecimal strings to form the final hex color string
-  return `#${hexR}${hexG}${hexB}`;
-}
+        // Convert each red, green, and blue value to a hexadecimal string
+        const hexR = r.toString(16).padStart(2, "0");
+        const hexG = g.toString(16).padStart(2, "0");
+        const hexB = b.toString(16).padStart(2, "0");
 
+        // Combine the hexadecimal strings to form the final hex color string
+        return `#${hexR}${hexG}${hexB}`;
+    }
 
-let inp =$state()
-const el = getContext('myKey');
+    let inp = $state();
+    const el = getContext("myKey");
 
-$effect(()=>{
-   inp.value = rgbToHex(el.pdiv().children[el.act()].style.background)
-})
+    $effect(() => {
+        inp.value = rgbToHex(el.pdiv().children[el.act()].style.background);
+    });
 
-const onblur =(ev)=>{
-    el.pdiv().children[el.act()].style.background = ev.target.value
-}
+    const onblur = (ev) => {
+        el.pdiv().children[el.act()].style.background = ev.target.value;
+    };
 </script>
 
 <div>
-   {el.act()} -- {el.pdiv()}
-
+    {el.act()} -- {el.pdiv()}
 </div>
-<input bind:this={inp} onblur={onblur} type='color'>
+<input bind:this={inp} {onblur} type="color" />

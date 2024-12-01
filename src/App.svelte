@@ -64,8 +64,8 @@
 
  const onclick=(n)=>active = n
  let active = $state(0)
- let mydiv =$state();
- 
+ let mydiv =$state.raw();
+
  let obj ={act:()=>active, pdiv:()=>mydiv}
  setContext('myKey',obj)   
 </script>
